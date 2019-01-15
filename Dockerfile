@@ -3,7 +3,7 @@ LABEL maintainer="Tom Skibinski <tomasz.skibinski@lcloud.pl>"
 
 ARG SLS_VERSION
 ENV LANG=en_US.UTF-8 \
-    SLS_VERSION=${SLS_VERSION:-1.32.0}
+    SLS_VERSION=${SLS_VERSION:-1.36.1}
 
 RUN yum update -y \
     && yum install -y \

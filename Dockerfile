@@ -4,7 +4,7 @@ LABEL maintainer="Tom Skibinski <tomasz.skibinski@lcloud.pl>"
 
 ARG SLS_VERSION
 ENV LANG=en_US.UTF-8 \
-    SLS_VERSION=${SLS_VERSION:-1.57.0}
+    SLS_VERSION=${SLS_VERSION:-1.59.3}
 
 RUN yum update -y \
     && yum install -y \
@@ -35,8 +35,9 @@ RUN yum update -y \
    && pip3 install -U \
         awscli \
         aws-sam-cli \
-        cfn-tools \
         cfn-flip \
+        cfn-lint \
+        cfn-tools \
    \
    && npm install -g \
         npm \
@@ -51,4 +52,5 @@ RUN python --version \
     && sam --version \
     && node --version \
     && sls --version \
-    && cfn_nag --version
+    && cfn_nag --version \
+    && cfn-lint --version 

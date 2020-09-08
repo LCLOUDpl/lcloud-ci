@@ -4,15 +4,17 @@ LABEL maintainer="Tom Skibinski <tomasz.skibinski@lcloud.pl>"
 
 ARG SLS_VERSION
 ENV LANG=en_US.UTF-8 \
-    SLS_VERSION=${SLS_VERSION:-1.66.0}
+    SLS_VERSION=${SLS_VERSION:-1.82.0}
 
 RUN yum update -y \
     && yum install -y \
         curl \
         wget \
     \
-    && curl --silent --location https://rpm.nodesource.com/setup_8.x | bash - \
+    && curl --silent --location https://rpm.nodesource.com/setup_12.x | bash - \
+    && yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo \
     && yum install -y \
+        docker-ce-cli \  
         gcc \
         git \
         jq \

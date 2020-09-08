@@ -7,8 +7,8 @@ Continuous Integration (CI) runner with:
 * Python (2.7 & 3.6)
 * AWS CLI
 * AWS SAM CLI
-* Node.js (v8)
-* Serverless Framework (v1.32.0)
-* curl, jq, unzip, wget, zip
+* Node.js (v12)
+* Serverless Framework (v1.82.0)
+* curl, jq, unzip, wget, zip, docker-ce-cli
 * cfn-nag
 

@@ -4,18 +4,20 @@ LABEL maintainer="Tom Skibinski <tomasz.skibinski@lcloud.pl>"
 
 ARG SLS_VERSION
 ENV LANG=en_US.UTF-8 \
-    SLS_VERSION=${SLS_VERSION:-1.82.0}
+    SLS_VERSION=${SLS_VERSION:-1.83.0}
 
 RUN yum update -y \
     && yum install -y \
         curl \
         wget \
+        yum-utils \
     \
     && curl --silent --location https://rpm.nodesource.com/setup_12.x | bash - \
-    && yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo \
     && yum install -y \
-        docker-ce-cli \  
+        docker \
         gcc \
+        libtool \
+        autoconf \
         git \
         jq \
         nodejs \
@@ -25,6 +27,9 @@ RUN yum update -y \
         python36 \
         python36-devel \
         python36-pip \
+        python38 \
+        python38-devel \
+        python38-pip \
         ruby24 \
         ruby24-devel \
         unzip \
@@ -42,10 +47,9 @@ RUN yum update -y \
         cfn-tools \
    \
    && npm install -g \
-        npm \
         serverless@$SLS_VERSION \
    \
-   && gem install cfn-nag
+   && gem install cfn-nag --version "0.6.23"
 
 # Display versions
 RUN python --version \

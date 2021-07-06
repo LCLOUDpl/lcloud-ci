@@ -1,5 +1,5 @@
-#FROM amazonlinux:2018.03-with-sources
-FROM amazonlinux:2018.03
+#FROM amazonlinux:2-with-sources
+FROM amazonlinux:2
 LABEL maintainer="Tom Skibinski <tomasz.skibinski@lcloud.pl>"
 
 ARG SLS_VERSION
@@ -11,7 +11,8 @@ RUN yum update -y \
         curl \
         wget \
         yum-utils \
-    \
+        amazon-linux-extras \
+    && amazon-linux-extras enable python3.8 ruby2.6 \
     && curl --silent --location https://rpm.nodesource.com/setup_12.x | bash - \
     && yum install -y \
         docker \
@@ -20,23 +21,20 @@ RUN yum update -y \
         autoconf \
         git \
         jq \
+        make \
         nodejs \
         openssl-devel \
-        python27-devel \
-        python27-pip \
-        python36 \
-        python36-devel \
-        python36-pip \
         python38 \
-        python38-devel \
-        python38-pip \
-        ruby24 \
-        ruby24-devel \
+        redhat-rpm-config \
+        ruby \
+        ruby-devel \
+        rubygem-json \
         unzip \
         which \
         zip \
         zlib-devel \
-   && ln -s -T /usr/bin/pip-3.6 /usr/bin/pip3 \
+   && ln -s -T /usr/bin/python3.8 /usr/bin/python3 \
+   && ln -s -T /usr/bin/pip3.8 /usr/bin/pip3 \
    && yum clean all \
    \
    && pip3 install -U \
@@ -59,4 +57,4 @@ RUN python --version \
     && node --version \
     && sls --version \
     && cfn_nag --version \
-    && cfn-lint --version 
+    && cfn-lint --version

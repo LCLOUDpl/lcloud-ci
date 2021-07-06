@@ -1,4 +1,5 @@
-FROM amazonlinux:2018.03
+#FROM amazonlinux:2-with-sources
+FROM amazonlinux:2
 LABEL maintainer="Tom Skibinski <tomasz.skibinski@lcloud.pl>"
 
 ARG SLS_VERSION
@@ -9,7 +10,8 @@ RUN yum update -y \
     && yum install -y \
         curl \
         yum-utils \
-    \
+        amazon-linux-extras \
+    && amazon-linux-extras enable python3.8 ruby2.6 \
     && curl -sL https://rpm.nodesource.com/setup_14.x | bash - \
     && curl -sL https://dl.yarnpkg.com/rpm/yarn.repo | tee /etc/yum.repos.d/yarn.repo \
     && yum install -y \
@@ -19,15 +21,14 @@ RUN yum update -y \
         git \
         jq \
         libtool \
+        make \
         nodejs \
         openssl-devel \
-        python27-devel \
-        python27-pip \
         python38 \
-        python38-devel \
-        python38-pip \
-        ruby24 \
-        ruby24-devel \
+        redhat-rpm-config \
+        ruby \
+        ruby-devel \
+        rubygem-json \
         sudo \
         unzip \
         wget \
@@ -37,6 +38,7 @@ RUN yum update -y \
         zlib-devel \
    && yum clean all \
    \
+   && ln -s -T /usr/bin/python3.8 /usr/bin/python3 \
    && ln -s -T /usr/bin/pip-3.8 /usr/bin/pip3 \
    && pip3 install -U \
         awscli==1.19.87 \
@@ -55,7 +57,6 @@ RUN yum update -y \
 
 # Display versions
 RUN python --version \
-    && python3 --version \
     && python3 --version \
     && aws --version \
     && sam --version \

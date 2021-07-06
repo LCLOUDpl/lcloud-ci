@@ -9,7 +9,7 @@ Continuous Integration (CI) runner with:
 * AWS SAM CLI (v1.24.0)
 * Node.js (v14)
 * Serverless Framework (v2.44.0)
-* Ruby (v2.4)
+* Ruby (v2.6)
 * curl, jq, unzip, wget, zip
 * docker (v19.03)
 * cfn-flip (v1.2.3)

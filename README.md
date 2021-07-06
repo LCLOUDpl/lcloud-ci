@@ -4,11 +4,15 @@
 
 Continuous Integration (CI) runner with:
 
-* Python (2.7 & 3.6)
-* AWS CLI
-* AWS SAM CLI
-* Node.js (v12)
-* Serverless Framework (v1.82.0)
-* curl, jq, unzip, wget, zip, docker-ce-cli
-* cfn-nag
-
+* Python (2.7 & 3.8)
+* AWS CLI (v1.19.87)
+* AWS SAM CLI (v1.24.0)
+* Node.js (v14)
+* Serverless Framework (v2.44.0)
+* Ruby (v2.6)
+* curl, jq, unzip, wget, zip
+* docker (v19.03)
+* cfn-flip (v1.2.3)
+* cfn-lint (v0.50.0)
+* cfn_nag (v0.6.23)
+* tflint (v0.28.1)
